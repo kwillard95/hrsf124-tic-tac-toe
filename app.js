@@ -37,7 +37,7 @@ var Presentation = {
     makeGrid: function () {
         for (var i = 0; i < 9; i++) {
             var box = document.createElement("div");
-            box.setAttribute("style", "width: 100px; height: 100px; border: 1px solid black; background-color: white; text-align:center");
+            box.setAttribute("style", "min-width: 100px; height: 100px; border: 1px solid black; background-color: white; text-align:center;");
             box.setAttribute("id", `${i}`);
             box.className = 'boxes';
             box.addEventListener("click", this.handleGridClick);
@@ -82,6 +82,7 @@ var Presentation = {
     },
     handleGridClick: function (event) {
         event.preventDefault();
+        event.target.removeEventListener(event.type, arguments.callee);
         var player = findPlayer();
         var el = document.getElementById(event.srcElement.id);
         var id = event.srcElement.id;
